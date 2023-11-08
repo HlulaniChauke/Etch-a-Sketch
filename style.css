@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    background-color: white
+}
+.mainContainer{
+    border: 3px solid black;
+    display: flex;
+    flex-direction: row;
+    width: 700px;
+    height: 500px;
+    border-radius: 10px;
+}
+
+.buttonContainer{
+    border: 3px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 500px;
+    border-radius: 10px;
+}
+
+.drawingPadContainer{
+    border: 3px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+}
