@@ -1,5 +1,6 @@
 const gridContainer = document.querySelector('.drawingPadContainer');
 const sizeButton = document.querySelector('#size');
+const blackButton = document.querySelector('#black');
 //calculate the size for squares given the number.
 
 window.addEventListener('load', () => drawGrid(20));
@@ -15,6 +16,7 @@ function createSquare(size, idNum){
     square.style.border = '1px solid lightgrey';
     //square.textContent = 'wh'
     square.id = idNum;
+    square.classList.add('squares');
     return square
 }
 
@@ -28,22 +30,28 @@ function clearGrid() {
 function drawGrid(number){
     clearGrid();
     let sizeOfSqr = squareSize(number);
-
     for (let i = 1; i <= (number * number); i++){
-    let newSqr = createSquare(sizeOfSqr, i)
-    gridContainer.appendChild(newSqr);
+        let newSqr = createSquare(sizeOfSqr, i)
+        gridContainer.appendChild(newSqr);
     }
     //automate the generation of 1frs
     let frs = '1fr ';
     for (let i = 1; i < number; i++){
-    frs += '1fr ';
+        frs += '1fr ';
     }   
     gridContainer.style.gridTemplateColumns = frs ;
 }
-
-
+function changeSqrColor(idNum){
+    idNum.style.backgroundColor = 'black';
+}
+// events listening and action
 
 sizeButton.addEventListener('click', () => 
      drawGrid(Number(window.prompt("Type a number between 2 and 100", "16"))));
+
+
+gridContainer.addEventListener('mouseover',(e) => 
+        console.log(e.target.id)
+);
 
     
