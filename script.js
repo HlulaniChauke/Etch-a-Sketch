@@ -14,7 +14,7 @@ function createSquare(size, idNum){
     return square
 }
 
-let number = 16;
+let number = 50;
 let sizeOfSqr = squareSize(number);
 
 
@@ -22,6 +22,10 @@ for (let i = 1; i <= (number * number); i++){
     let newSqr = createSquare(sizeOfSqr, i)
     gridContainer.appendChild(newSqr);
 }
-
-gridContainer.style = 'grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;';
+//automate the generation of 1frs
+let frs = '1fr ';
+for (let i = 1; i < number; i++){
+    frs += '1fr ';
+}
+gridContainer.style.gridTemplateColumns = frs ;
 
