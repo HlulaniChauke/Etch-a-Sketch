@@ -1,5 +1,5 @@
 const gridContainer = document.querySelector('.drawingPadContainer');
-const resetButton = document.querySelector('#reset');
+const sizeButton = document.querySelector('#size');
 //calculate the size for squares given the number.
 function squareSize(number){
     let size = 500 / number ;
@@ -15,7 +15,6 @@ function createSquare(size, idNum){
     return square
 }
 
-let number = 20;
 
 function drawGrid(number){
     let sizeOfSqr = squareSize(number);
@@ -32,9 +31,10 @@ function drawGrid(number){
     gridContainer.style.gridTemplateColumns = frs ;
 }
 
-drawGrid(number);
+window.addEventListener('load', function() {
+    drawGrid(20);});
 
-resetButton.addEventListener('click', () => 
+sizeButton.addEventListener('click', () => 
      drawGrid(Number(window.prompt("Type a number between 2 and 100", "16"))));
 
     
