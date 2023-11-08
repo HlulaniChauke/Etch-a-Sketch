@@ -15,7 +15,7 @@ function createSquare(size, idNum){
     const square = document.createElement('div');
     square.style.border = '1px solid lightgrey';
     //square.textContent = 'wh'
-    square.id = idNum;
+    square.id = 'sq'+idNum;
     square.classList.add('squares');
     return square
 }
@@ -42,7 +42,8 @@ function drawGrid(number){
     gridContainer.style.gridTemplateColumns = frs ;
 }
 function changeSqrColor(idNum){
-    idNum.style.backgroundColor = 'black';
+    const sq = document.getElementById(idNum);
+    sq.style.backgroundColor = 'black';
 }
 // events listening and action
 
@@ -50,8 +51,10 @@ sizeButton.addEventListener('click', () =>
      drawGrid(Number(window.prompt("Type a number between 2 and 100", "16"))));
 
 
-gridContainer.addEventListener('mouseover',(e) => 
-        console.log(e.target.id)
+gridContainer.addEventListener('mouseover',(e) => {
+    console.log(e.target.id);
+    changeSqrColor((e.target.id));
+}       
 );
 
     
