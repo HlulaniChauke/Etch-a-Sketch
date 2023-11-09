@@ -39,7 +39,8 @@ function clearGrid() {
 //generate random color.
 function generateRandomColor(){
     const randomColor = Math.floor(Math.random()*16777215).toString(16);
-    randomColor = "#" + randomColor;
+    //randomColor = "#" + randomColor;
+    return randomColor
 }
 
 function changeSqrColor(idNum){
@@ -49,10 +50,10 @@ function changeSqrColor(idNum){
     }
     if (sq.classList.contains('random')){
         let color = generateRandomColor();
-        sq.style.backgroundColor = 'red';
+        sq.style.backgroundColor = '#'+color;
     }
     if (sq.classList.length === 1){
-        sq.style.backgroundColor = ''
+        sq.style.backgroundColor = 'white'
     }
 }
 
