@@ -1,20 +1,29 @@
 const gridContainer = document.querySelector('.drawingPadContainer');
 const sizeButton = document.querySelector('#size');
 const blackButton = document.querySelector('#black');
+const randomButton = document.querySelector('#random')
+const resetButton = document.querySelector('#reset')
 //calculate the size for squares given the number.
 
 window.addEventListener('load', () => drawGrid(20));
 
-function squareSize(number){
-    let size = 500 / number ;
-    return size
+function createNewClass(colorNameClass){
+    const pad = document.getElementsByClassName('squares');
+    for (let i = 0; i <pad.length; i++){
+        if (pad[i].classList.length > 1){
+            pad[i].classList.remove(pad[i].classList.item(1), colorNameClass);}
+        else{
+            pad[i].classList.add(colorNameClass);
+            console.log(pad[i].classList);
+        }
+
+    }
 }
 
 //create a square
 function createSquare(size, idNum){
     const square = document.createElement('div');
     square.style.border = '1px solid lightgrey';
-    //square.textContent = 'wh'
     square.id = 'sq'+idNum;
     square.classList.add('squares');
     return square
@@ -25,6 +34,11 @@ function clearGrid() {
     while (gridContainer.firstChild) {
         gridContainer.removeChild(gridContainer.firstChild);
     }
+}
+
+function changeSqrColor(idNum){
+    const sq = document.getElementById(idNum);
+    sq.style.backgroundColor = 'black';
 }
 
 function drawGrid(number){
@@ -41,10 +55,18 @@ function drawGrid(number){
     }   
     gridContainer.style.gridTemplateColumns = frs ;
 }
-function changeSqrColor(idNum){
-    const sq = document.getElementById(idNum);
-    sq.style.backgroundColor = 'black';
+
+function squareSize(number){
+    let size = 500 / number ;
+    return size
 }
+
+//generate random color.
+function generateRandomColor(){
+    const randomColor = Math.floor(Math.random()*16777215).toString(16);
+    randomColor = "#" + randomColor;
+}
+
 // events listening and action
 
 sizeButton.addEventListener('click', () => 
@@ -52,9 +74,19 @@ sizeButton.addEventListener('click', () =>
 
 
 gridContainer.addEventListener('mouseover',(e) => {
-    console.log(e.target.id);
     changeSqrColor((e.target.id));
+    console.log(e);
 }       
 );
+
+resetButton.addEventListener('click', () =>{
+    clearGrid();
+    drawGrid(Number(window.prompt("Type a number between 2 and 100", "16")));
+});
+
+blackButton.addEventListener('click', () => { createNewClass('black')}); 
+
+randomButton.addEventListener('click', () => {createNewClass('random')}
+); 
 
     
