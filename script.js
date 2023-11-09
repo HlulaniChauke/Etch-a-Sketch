@@ -36,9 +36,24 @@ function clearGrid() {
     }
 }
 
+//generate random color.
+function generateRandomColor(){
+    const randomColor = Math.floor(Math.random()*16777215).toString(16);
+    randomColor = "#" + randomColor;
+}
+
 function changeSqrColor(idNum){
     const sq = document.getElementById(idNum);
-    sq.style.backgroundColor = 'black';
+    if (sq.classList.contains('black')){
+        sq.style.backgroundColor = 'black';
+    }
+    if (sq.classList.contains('random')){
+        let color = generateRandomColor();
+        sq.style.backgroundColor = 'red';
+    }
+    if (sq.classList.length === 1){
+        sq.style.backgroundColor = ''
+    }
 }
 
 function drawGrid(number){
@@ -61,11 +76,7 @@ function squareSize(number){
     return size
 }
 
-//generate random color.
-function generateRandomColor(){
-    const randomColor = Math.floor(Math.random()*16777215).toString(16);
-    randomColor = "#" + randomColor;
-}
+
 
 // events listening and action
 
@@ -75,7 +86,7 @@ sizeButton.addEventListener('click', () =>
 
 gridContainer.addEventListener('mouseover',(e) => {
     changeSqrColor((e.target.id));
-    console.log(e);
+    //console.log(e);
 }       
 );
 
